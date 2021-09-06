@@ -1,13 +1,14 @@
 // import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import ReviewItems from './Review'
+import ReviewItems from './Review';
+import PropTypes from 'prop-types';
 
 function App() {
  return ( 
     <div className="Parentbox"> 
         <FotoProduk/>
-        <ProdukInfo isDiscount="comming" category="lebaran" name="KOPI"/>
+        <ProdukInfo isDiscount="yes" category="lebaran" name="KOPI"/>
         <ReviewItems/>
     </div>
     );
@@ -22,10 +23,10 @@ function FotoProduk(){
 }
 
 function CheckDiscount(props){
-    const {isDiscount}= props
-  if (isDiscount === "no") {
+    const {isDiscount, discount}= props
+  if (isDiscount === "yes") {
       return(
-         <p>Diskon 50% Off</p>
+         <p>Diskon {discount}% Off</p>
       )
   }
   else if (isDiscount === "comming") {
@@ -44,7 +45,7 @@ function ProdukInfo(props){
     const {category, name, isDiscount} = props
     const benefit = ["Tidak kusut terkena air","Bahan lebih halus", "Tidak gerah"]
     const ListBenefits = benefit.map((itemBenefit) =>
-    <li>{itemBenefit}</li>
+    <li key={itemBenefit}>{itemBenefit}</li>
   );
     return(
     <div> 
@@ -52,7 +53,7 @@ function ProdukInfo(props){
             <p className="Cate">{category}</p>
             <h1 className="Title">{name}</h1>
             <p className="Prize">IDR 10.000 </p>
-            <CheckDiscount isDiscount={isDiscount}/>
+            <CheckDiscount isDiscount={isDiscount} discount={50}/>
             <p className="Info">
             it sets up your development environment so that you can use the latest JavaScript features, 
             provides a nice developer experience, and optimizes your app for production
@@ -67,5 +68,9 @@ function ProdukInfo(props){
 function TambahCart(e){
    return console.log('ok',e);
 }
+
+CheckDiscount.propTypes = {
+    discount: PropTypes.number.isRequired
+  };
 
 export default App;
