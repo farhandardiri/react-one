@@ -15,7 +15,7 @@ function App() {
 function FotoProduk(){
     return(
     <div className="Foto">
-        <img src="Biji Kopi.png"/>
+        <img src="Dick and Carey.jpg"/>
     </div>
     )
 }
@@ -41,6 +41,10 @@ function CheckDiscount(props){
 
 function ProdukInfo(props){
     const {category, name, isDiscount} = props
+    const benefit = ["Tidak kusut terkena air","Bahan lebih halus", "Tidak gerah"]
+    const ListBenefits = benefit.map((itemBenefit) =>
+    <li>{itemBenefit}</li>
+  );
     return(
     <div> 
         <div className="Deskripsi">
@@ -52,7 +56,7 @@ function ProdukInfo(props){
             it sets up your development environment so that you can use the latest JavaScript features, 
             provides a nice developer experience, and optimizes your app for production
             </p>
-
+            <ul>{ListBenefits}</ul>
             <a onClick={(e) => TambahCart(name, e)} href="#">Add to Cart</a>
          </div>
     </div>
